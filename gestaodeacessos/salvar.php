@@ -16,9 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Salva no arquivo
         file_put_contents($caminhoArquivo, $linhaLog, FILE_APPEND | LOCK_EX);
-
-        // Redireciona após o envio (opcional)
-        header('Location: sucesso.html'); // Crie uma página de sucesso
         exit();
     }
 }
